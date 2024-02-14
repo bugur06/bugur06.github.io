@@ -1,70 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>DevJane Portfolio Website</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
-        
-        <!-- Update these with your own fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body>
-        <header>
-            <div class="logo">
-                <img src="img/devjane.png" alt="">
-            </div>
-            <button class="nav-toggle" aria-label="toggle navigation">
-                <span class="hamburger"></span>
-            </button>
-            <nav class="nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
-                    <li class="nav__item"><a href="#services" class="nav__link">My Services</a></li>
-                    <li class="nav__item"><a href="#about" class="nav__link">About me</a></li>
-                    <li class="nav__item"><a href="#work" class="nav__link">My Work</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-
-        
-        
-        
-        <!-- Footer -->
-        <footer class="footer">
-            <!-- My e-mail address -->
-            <a href="mailto:hello@jane.dev" class="footer__link">hello@jane.dev</a>
-            <ul class="social-list">
-                <li class="social-list__item">
-                    <a class="social-list__link" href="https://codepen.io">
-                        <i class="fab fa-codepen"></i>
-                    </a>
-                </li>
-                <li class="social-list__item">
-                    <a class="social-list__link" href="http://dribbble.com">
-                        <i class="fab fa-dribbble"></i>
-                    </a>
-                </li>
-                <li class="social-list__item">
-                    <a class="social-list__link" href="https://twitter.com">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </li>
-                <li class="social-list__item">
-                    <a class="social-list__link" href="https://github.com">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behlul Portfolio Item</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <!-- Your logo or site name -->
+        </div>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+                <li class="nav__item"><a href="#services" class="nav__link">My Services</a></li>
+                <li class="nav__item"><a href="#about" class="nav__link">About me</a></li>
+                <li class="nav__item"><a href="#work" class="nav__link">My Portfolio</a></li>
             </ul>
-        </footer>
-        
-        
-        <script src="js/index.js"></script>
-        
-    </body>
+        </nav>
+    </header>
+
+    <!-- Portfolio Item -->
+    <section class="portfolio-item">
+        <h2 class="section__title section__title--portfolio">Portfolio Item 1</h2>
+        <div class="portfolio-item__content">
+            <div class="portfolio-item__details">
+                <h3>Rendering Engine</h3>
+                <p>Basic rendering engine made in c++ using OpenGL.</p>
+                <a href="https://github.com/bugur06/OpenGL-Practice" class="btn">GitHub Link</a>
+            </div>
+            <div class="portfolio-item__images">
+                <img src="images/project1-1.jpg" alt="Project 1 Image 1">
+                <img src="images/project1-2.jpg" alt="Project 1 Image 2">
+            </div>
+        </div>
+    </section>
+
+    <!-- Another Portfolio Item -->
+    <section class="portfolio-item">
+        <h2 class="section__title section__title--portfolio">Portfolio Item 2</h2>
+        <div class="portfolio-item__content">
+            <div class="portfolio-item__details">
+                <h3>Treehouse Defense Game</h3>
+                <p>A tower defense like game similar to the zombie survivors made in unity for a game jam</p>
+                <a href="https://github.com/yourusername/project2" class="btn">GitHub Link</a>
+            </div>
+            <div class="portfolio-item__video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/VcJAbvkXNC4?si=s0-yWdkJQnj7Lhej" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- Another Portfolio Item -->
+        <section class="portfolio-item">
+            <h2 class="section__title section__title--portfolio">Portfolio Item 3</h2>
+            <div class="portfolio-item__content">
+                <div class="portfolio-item__details">
+                    <h3>Platform Jumping Game</h3>
+                    <p>A basic platform jumping game clone from the old school Doodle Jump</p>
+                    <a href="https://github.com/yourusername/project2" class="btn">GitHub Link</a>
+                </div>
+                <div class="portfolio-item__video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/C_ijnbRfkic?si=W86d1QhVsE6wm8DB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Send E-mail to me: </strong></p>
+        <a href="mailto:uur.muhammed@gmail.com" class="footer__link">uur.muhammed@gmail.com</a>
+        <ul class="social-list">
+            <li class="social-list__item">
+                <a class="social-list__link" href="https://github.com/bugur06">
+                    <i class="fab fa-github"></i>
+                </a>
+            </li>
+        </ul>
+    </footer>
+
+    <script src="js/index.js"></script>
+</body>
 </html>
