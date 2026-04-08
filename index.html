@@ -6,12 +6,8 @@
         <title>Behlul Portfolio Website</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
-        
-        <!-- fonts -->
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
-        
         <link rel="stylesheet" href="css/style.css">
-
     </head>
     <body>
         <header>
@@ -35,71 +31,60 @@
             <h1 class="section__title section__title--intro">
                 Hi, I am <strong>M. Behlul Ugur</strong>
             </h1>
-            
-            <p class="section__subtitle section__subtitle--intro"><i class="fa fa-terminal"></i> Game Dev</p>
+            <p class="section__subtitle section__subtitle--intro">
+                <i class="fa fa-terminal"></i> Game Dev<span class="cursor"></span>
+            </p>
             <img src="images/behlul.jpg" alt="a picture of Behlul" class="intro__img">
         </section>
         
         <img class="image-bg" src="images/pc.jpg" alt="">
+
         <!-- My services -->
         <section class="my-services" id="services">
-            
             <h2 class="section__title section__title--services">I am interested in:</h2>
             <div class="services">
-                <div class="service">
+                <div class="service fade-in">
                     <h3><i class="fa fa-laptop-code"></i><br><br>Unity</h3>
                     <p></p>
-                </div> <!-- / service -->
-                
-                <div class="service">
-                    <h3><i class="fa fa-briefcase"></i> <br><br>Rendering</h3>
+                </div>
+                <div class="service fade-in" style="transition-delay: 0.15s;">
+                    <h3><i class="fa fa-briefcase"></i><br><br>Rendering</h3>
                     <p></p>
-                </div> <!-- / service -->
-                
-                <div class="service">
-                    <h3><i class="fa fa-folder-open"></i> <br><br>Game Development</h3>
+                </div>
+                <div class="service fade-in" style="transition-delay: 0.3s;">
+                    <h3><i class="fa fa-folder-open"></i><br><br>Game Development</h3>
                     <p></p>
-                </div> <!-- / service -->
-            </div> <!-- / services -->
-            
-            
+                </div>
+            </div>
         </section>
-        
         
         <!-- About me -->
         <section class="about-me" id="about">
-           <h2 class="section__title section__title--about">Who I am</h2>
+           <h2 class="section__title section__title--about fade-in">Who I am</h2>
            <p class="section__subtitle section__subtitle--about"><i class="fa fa-terminal"></i> Developer based in Ankara</p>
-           
-           <div class="about-me__body">
+           <div class="about-me__body fade-in" style="transition-delay: 0.1s;">
                <p>I am Muhammed Behlul Ugur. I graduated from Middle East Technical University, Computer Education and Instructional Technologies department. I am a developer and educator who is interested in particularly game development.</p>
-               <p>I am passionate about Software development. I have been curious about learning Software and game development related stuff since my childhood. I developed my skills at C++, C#, Unity and related technologies. </p>
+               <p>I am passionate about Software development. I have been curious about learning Software and game development related stuff since my childhood. I developed myself at C++, C#, Unity and related technologies. </p>
            </div>
-           
-           <img src="images/me.jpg" alt="Jane leaning against a bus" class="about-me__img">
+           <img src="images/me.jpg" alt="Jane leaning against a bus" class="about-me__img fade-in" style="transition-delay: 0.2s;">
         </section>
         
         <!-- My CV -->
         <section class="my-CV" id="work">
-            <h2 class="section__title section__title--work">My Portfolio</h2>
+            <h2 class="section__title section__title--work fade-in">My Portfolio</h2>
             <br>
-            <a href="/portfolio-item.html" class="btn">My Portfolio</a>
-            <br> <br> <br> <br>
-            <p class="section__subtitle section__subtitle--work">My CV:</p>
-            <a class="cv-link" href="files/CV_english.docx">CV_english</a>
-            
-            <div class="portfolio">
-                
-            </div>
+            <a href="/portfolio-item.html" class="btn fade-in" style="transition-delay: 0.1s;">My Portfolio</a>
+            <br><br><br><br>
+            <p class="section__subtitle section__subtitle--work fade-in" style="transition-delay: 0.2s;">My CV:</p>
+            <a class="cv-link fade-in" href="files/CV_english.docx" style="transition-delay: 0.25s;">CV_english</a>
+            <div class="portfolio"></div>
         </section>
-        
         
         <!-- Footer -->
         <footer class="footer">
             <p><strong>Send E-mail to me: </strong></p>
             <a href="mailto:uur.muhammed@gmail.com" class="footer__link">uur.muhammed@gmail.com</a>
             <ul class="social-list">
-                
                 <li class="social-list__item">
                     <a class="social-list__link" href="https://github.com/bugur06">
                         <i class="fab fa-github"></i>
@@ -108,8 +93,25 @@
             </ul>
         </footer>
         
-        
         <script src="js/index.js"></script>
-        
+        <script>
+            // Sticky header shadow
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 10);
+            });
+
+            // Scroll fade-in observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        </script>
     </body>
 </html>

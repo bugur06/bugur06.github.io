@@ -3,140 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Behlul Portfolio Item</title>
+    <title>Behlul — Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
-    <!-- fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .portfolio-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3em 2em 5em;
+        }
+        .portfolio-page__heading {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 900;
+            color: #008ccf;
+            margin: 0 0 0.15em;
+        }
+        .portfolio-page__sub {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.95rem;
+            color: #888;
+            margin: 0 0 1em;
+            letter-spacing: 1px;
+        }
+        .portfolio-page__divider {
+            width: 3em;
+            height: 3px;
+            background: #16e0bd;
+            border-radius: 2px;
+            margin: 0 0 2.5em;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+            gap: 1.75em;
+        }
+        .project-card {
+            background: #fff;
+            border: 1px solid #daeef8;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 320ms ease, box-shadow 320ms ease, border-color 320ms ease;
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 500ms ease, transform 500ms ease, box-shadow 320ms ease, border-color 320ms ease;
+        }
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0, 140, 207, 0.13);
+            border-color: #16e0bd;
+        }
+        .project-card__header {
+            background: #008ccf;
+            padding: 1em 1.4em 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 0.75em;
+        }
+        .project-card__icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        .project-card__title {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1rem;
+            font-weight: 900;
+            color: #fff;
+            margin: 0;
+            line-height: 1.3;
+        }
+        .project-card__tag {
+            margin-left: auto;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.68rem;
+            background: rgba(22, 224, 189, 0.22);
+            color: #16e0bd;
+            padding: 3px 9px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .project-card__body {
+            padding: 1.15em 1.4em;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+        .project-card__desc {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.93rem;
+            color: #555;
+            line-height: 1.65;
+            margin: 0;
+        }
+        .project-card__media {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6em;
+        }
+        .project-card__media iframe {
+            border-radius: 8px;
+            flex: 1 1 180px;
+            min-width: 0;
+            transition: transform 280ms ease, box-shadow 280ms ease;
+        }
+        .project-card__media iframe:hover {
+            transform: scale(1.025);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        }
+        .project-card__media img {
+            border-radius: 8px;
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 280ms ease;
+        }
+        .project-card__media img:hover {
+            transform: scale(1.02);
+        }
+        .project-card__footer {
+            padding: 0 1.4em 1.15em;
+            display: flex;
+            gap: 0.6em;
+            flex-wrap: wrap;
+        }
+        .project-card__btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.4em 1.1em;
+            border-radius: 6px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid #008ccf;
+            color: #008ccf;
+            background: transparent;
+            transition: background 200ms ease, color 200ms ease, transform 180ms ease;
+        }
+        .project-card__btn:hover {
+            background: #008ccf;
+            color: #fff;
+            transform: scale(1.05);
+        }
+        .project-card__btn--accent {
+            border-color: #16e0bd;
+            color: #0a8a73;
+        }
+        .project-card__btn--accent:hover {
+            background: #16e0bd;
+            color: #fff;
+        }
+        @media (max-width: 600px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            .project-card__tag { display: none; }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-        </div>
+        <div class="logo"></div>
         <button class="nav-toggle" aria-label="toggle navigation">
             <span class="hamburger"></span>
         </button>
         <nav class="nav">
             <ul class="nav__list">
                 <li class="nav__item"><a href="/index.html#home" class="nav__link">Home</a></li>
-                <li class="nav__item"><a href="/index.html#home"" class="nav__link">My Interests</a></li>
+                <li class="nav__item"><a href="/index.html#home" class="nav__link">My Interests</a></li>
                 <li class="nav__item"><a href="/index.html#about" class="nav__link">About me</a></li>
                 <li class="nav__item"><a href="" class="nav__link">My Portfolio</a></li>
             </ul>
         </nav>
     </header>
 
-    
+    <main class="portfolio-page">
+        <h1 class="portfolio-page__heading">My Projects</h1>
+        <p class="portfolio-page__sub">// game dev &middot; unity &middot; blender &middot; web</p>
+        <div class="portfolio-page__divider"></div>
 
+        <div class="cards-grid">
 
-
-    <section class="portfolio-item">
-    <h2 class="section__title section__title--portfolio">--------------</h2>
-    <div class="portfolio-item__content">
-        <div class="portfolio-item__details">
-            <h3>2D Turn-Based RPG Game</h3>
-            <p>
-                A story-driven 2D turn-based RPG featuring strategic combat, 
-                character progression, with bosses and creatures.
-                Developed using Unity.
-            </p>
-        </div>
-        <div class="portfolio-item__video">
-            <iframe width="260" height="315" 
-                src="https://youtube.com/embed/8JKXfsNhhrg?si=MWfsCkCzNS24FtdB" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-            <iframe width="260" height="315" 
-                src="https://youtube.com/embed/8JKXfsNhhrg?si=MWfsCkCzNS24FtdB" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-            <iframe width="260" height="315" 
-                src="https://youtube.com/embed/8JKXfsNhhrg?si=MWfsCkCzNS24FtdB" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
-    </div>
-</section>
-
-
-    <!-- Another Portfolio Item -->
-    <section class="portfolio-item">
-        <h2 class="section__title section__title--portfolio">--------------</h2>
-        <div class="portfolio-item__content">
-            <div class="portfolio-item__details">
-                <h3>Treehouse Defense Game</h3>
-                <p>A tower defense like game similar to the zombie survivors made in unity for a game jam</p>
-                <a href="https://github.com/bugur06/TreeHouseDefense" class="btn">GitHub Link</a>
-            </div>
-            <div class="portfolio-item__video">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/VcJAbvkXNC4?si=s0-yWdkJQnj7Lhej" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-
-        <!-- Another Portfolio Item -->
-        <section class="portfolio-item">
-            <h2 class="section__title section__title--portfolio">--------------</h2>
-            <div class="portfolio-item__content">
-                <div class="portfolio-item__details">
-                    <h3>Platform Jumping Game</h3>
-                    <p>A basic platform jumping game clone from the old school Doodle Jump</p>
-                    <a href="https://github.com/bugur06/Platform-Jumping-Game" class="btn">GitHub Link</a>
+            <article class="project-card">
+                <div class="project-card__header">
+                    <div class="project-card__icon"><i class="fas fa-dragon"></i></div>
+                    <h2 class="project-card__title">2D Turn-Based RPG Game</h2>
+                    <span class="project-card__tag">Unity &middot; C#</span>
                 </div>
-                <div class="portfolio-item__video">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/C_ijnbRfkic?si=W86d1QhVsE6wm8DB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="project-card__body">
+                    <p class="project-card__desc">A story-driven 2D turn-based RPG featuring strategic combat, character progression, bosses and creatures. Developed using Unity.</p>
+                    <div class="project-card__media">
+                        <iframe width="100%" height="185" src="https://youtube.com/embed/XZYGddF3VWs?si=BpaQGTQlJvkol8u2" title="RPG gameplay 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe width="100%" height="185" src="https://youtube.com/embed/4g7unccJG44?si=Fn0eo-WPbmNIdA9_" title="RPG gameplay 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe width="100%" height="185" src="https://youtube.com/embed/8JKXfsNhhrg?si=MWfsCkCzNS24FtdB" title="RPG gameplay 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </article>
 
-        
-        <!-- Another Portfolio Item -->
-        <section class="portfolio-item">
-            <h2 class="section__title section__title--portfolio">--------------</h2>
-            <div class="portfolio-item__content">
-                <div class="portfolio-item__details">
-                    <h3>3d scene made in blender</h3>
-                    <p>Scene containing lighthouse, terrain, sea</p>
+            <article class="project-card">
+                <div class="project-card__header">
+                    <div class="project-card__icon"><i class="fas fa-shield-alt"></i></div>
+                    <h2 class="project-card__title">Treehouse Defense Game</h2>
+                    <span class="project-card__tag">Unity &middot; Game Jam</span>
                 </div>
-                <div class="portfolio-item__video">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/i6nofCD8hKo?si=iJrtItoLpb8WKvCA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="project-card__body">
+                    <p class="project-card__desc">A tower defense game similar to zombie survivors, built in Unity for a game jam.</p>
+                    <div class="project-card__media">
+                        <iframe width="100%" height="255" src="https://www.youtube.com/embed/VcJAbvkXNC4?si=s0-yWdkJQnj7Lhej" title="Treehouse Defense" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
                 </div>
-            </div>
-        </section>
+                <div class="project-card__footer">
+                    <a href="https://github.com/bugur06/TreeHouseDefense" class="project-card__btn" target="_blank">
+                        <i class="fab fa-github" style="font-size:12px;"></i> GitHub
+                    </a>
+                </div>
+            </article>
 
+            <article class="project-card">
+                <div class="project-card__header">
+                    <div class="project-card__icon"><i class="fas fa-arrow-up"></i></div>
+                    <h2 class="project-card__title">Platform Jumping Game</h2>
+                    <span class="project-card__tag">Unity &middot; Clone</span>
+                </div>
+                <div class="project-card__body">
+                    <p class="project-card__desc">A classic platform jumping game inspired by the old-school Doodle Jump.</p>
+                    <div class="project-card__media">
+                        <iframe width="100%" height="255" src="https://www.youtube.com/embed/C_ijnbRfkic?si=W86d1QhVsE6wm8DB" title="Platform Jumping" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="project-card__footer">
+                    <a href="https://github.com/bugur06/Platform-Jumping-Game" class="project-card__btn" target="_blank">
+                        <i class="fab fa-github" style="font-size:12px;"></i> GitHub
+                    </a>
+                </div>
+            </article>
 
-        <!-- Portfolio Item -->
-    <section class="portfolio-item">
-        <h2 class="section__title section__title--portfolio">--------------</h2>
-        <div class="portfolio-item__content">
-            <div class="portfolio-item__details">
-                <h3>Web Agenda Application</h3>
-                <p>A web agenda application made using node.js and related technologies </p>
-                <a href="files/YOUR_DIGITAL_AGENDA.pptx" class="btn">Presentation</a>
-            </div>
-            <div class="portfolio-item__images">
-                <img src="/images/Screenshot_5.png" alt="alternative_text_here">
+            <article class="project-card">
+                <div class="project-card__header">
+                    <div class="project-card__icon"><i class="fas fa-cube"></i></div>
+                    <h2 class="project-card__title">3D Scene in Blender</h2>
+                    <span class="project-card__tag">Blender &middot; 3D</span>
+                </div>
+                <div class="project-card__body">
+                    <p class="project-card__desc">A rendered 3D scene featuring a lighthouse, detailed terrain, and animated sea.</p>
+                    <div class="project-card__media">
+                        <iframe width="100%" height="255" src="https://www.youtube.com/embed/i6nofCD8hKo?si=iJrtItoLpb8WKvCA" title="Blender scene" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </article>
 
-            </div>
+            <article class="project-card">
+                <div class="project-card__header">
+                    <div class="project-card__icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h2 class="project-card__title">Web Agenda Application</h2>
+                    <span class="project-card__tag">Node.js &middot; Web</span>
+                </div>
+                <div class="project-card__body">
+                    <p class="project-card__desc">A full-featured web agenda application built with Node.js and related technologies.</p>
+                    <div class="project-card__media">
+                        <img src="/images/Screenshot_5.png" alt="Web Agenda Application Screenshot">
+                    </div>
+                </div>
+                <div class="project-card__footer">
+                    <a href="files/YOUR_DIGITAL_AGENDA.pptx" class="project-card__btn project-card__btn--accent">
+                        <i class="fas fa-file-powerpoint" style="font-size:12px;"></i> Presentation
+                    </a>
+                </div>
+            </article>
+
         </div>
-    </section>
-    
+    </main>
 
-
-
-
-    <!-- Footer -->
     <footer class="footer">
         <p><strong>Send E-mail to me: </strong></p>
         <a href="mailto:uur.muhammed@gmail.com" class="footer__link">uur.muhammed@gmail.com</a>
@@ -150,5 +307,23 @@
     </footer>
 
     <script src="js/portfolio-item.js"></script>
-</body> 
+    <script>
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 10);
+        });
+
+        const cards = document.querySelectorAll('.project-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.transitionDelay = (i * 0.07) + 's';
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        cards.forEach(el => observer.observe(el));
+    </script>
+</body>
 </html>
